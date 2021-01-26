@@ -29,6 +29,10 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache" >
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+	
+	<context:component-scan base-package="com.vasac.service" />
+	<context:component-scan base-package="com.vasac.dao" />
+	<context:component-scan base-package="com.vasac.domain" />
 
 
 	

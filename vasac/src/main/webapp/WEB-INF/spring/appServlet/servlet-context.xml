@@ -22,8 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.vasac.controller" />
-	<context:component-scan base-package="com.vasac.service" />
-	<context:component-scan base-package="com.vasac.dao" />
+
 	
 	
 	
