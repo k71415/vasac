@@ -22,8 +22,15 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.vasac.controller" />
+		
+	<beans:bean id="AdminInterceptor" class="com.vasac.interceptor.AdminInterceptor" />
+		
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/**" />
+			<beans:ref bean="AdminInterceptor" />
+		</interceptor>
+	</interceptors>
+	
 
-	
-	
-	
 </beans:beans>

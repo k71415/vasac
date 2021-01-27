@@ -43,7 +43,8 @@
   
 
   </head>
-  <body> 
+  <body>
+  ${member.userId}님 ㅎㅇ
    <!-- wpf loader Two -->
     <div id="wpf-loader-two">          
       <div class="wpf-loader-two-inner">
@@ -71,13 +72,10 @@
             <!-- single slide item -->
             <li>
               <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/1.jpg" alt="Men slide img" />
+                <img data-seq src="/resources/customer/img/slider/2.jpg" alt="Men slide img" />
               </div>
               <div class="seq-title">
-               <span data-seq>Save Up to 75% Off</span>                
-                <h2 data-seq>Men Collection</h2>                
-                <p data-seq>아아아아</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+               
               </div>
             </li>
             <!-- single slide item -->
@@ -86,10 +84,7 @@
                 <img data-seq src="/resources/customer/img/slider/2.jpg" alt="Wristwatch slide img" />
               </div>
               <div class="seq-title">
-                <span data-seq>Save Up to 40% Off</span>                
-                <h2 data-seq>Wristwatch Collection</h2>                
-                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                
               </div>
             </li>
             <!-- single slide item -->
@@ -98,10 +93,7 @@
                 <img data-seq src="/resources/customer/img/slider/3.jpg" alt="Women Jeans slide img" />
               </div>
               <div class="seq-title">
-                <span data-seq>Save Up to 75% Off</span>                
-                <h2 data-seq>Jeans Collection</h2>                
-                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                
               </div>
             </li>
             <!-- single slide item -->           
@@ -110,10 +102,7 @@
                 <img data-seq src="/resources/customer/img/slider/4.jpg" alt="Shoes slide img" />
               </div>
               <div class="seq-title">
-                <span data-seq>Save Up to 75% Off</span>                
-                <h2 data-seq>Exclusive Shoes</h2>                
-                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                
               </div>
             </li>
             <!-- single slide item -->  
@@ -122,17 +111,14 @@
                 <img data-seq src="/resources/customer/img/slider/5.jpg" alt="Male Female slide img" />
               </div>
               <div class="seq-title">
-                <span data-seq>Save Up to 50% Off</span>                
-                <h2 data-seq>Best Collection</h2>                
-                <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+               
               </div>
             </li>                   
           </ul>
         </div>
         <!-- slider navigation btn -->
         <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
-          <a type="button" class="seq-prev" aria-label="Previous"><span class="fas fa-angle-left"></span></a>
+          <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
           <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
         </fieldset>
       </div>
