@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VASAC - 관리자 | 메인페이지</title>
+  <title>VASAC - 관리자 | 상품등록</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -38,27 +39,76 @@
   <!-- Sidebar -->
   <%@ include file="include/side.jsp" %>  
   <!-- /.sidebar -->
-  
+
 
   <!-- Main -->
   <div class="content-wrapper">
-   <div>
-   	<h1>상품 등록</h1>
-   </div>
-   	<div>
- 		<form action="reg" method="post">
- 				
- 		상품명 :<input type="text"> <br>
- 		상품재고 :<input type="text"> <br>
- 		상품가격 :<input type="text"> <br>
- 		상품설명 :<textarea rows="25" cols="50"></textarea>
- 		<input type="submit" value="등록">
- 		</form>
- 	</div>
- 	
    
+		<h1 style="padding:20px 10px;">상품등록</h1>
+	<form method="post" action="/admin/reg">
+   <table class="table table-striped table-bordered">
+	
+	
+	<tr>
+		<th>1차분류</th>
+        <td>
+        	
+        	<select class="form-control">
+        		<option value="">1차 분류</option>
+        			<c:forEach var="n" items="${category}">
+        			<c:if test="${n.cateCodeRef == null}">
+        				<option value="">${n.cateName}</option>        			
+        			</c:if>
+        			</c:forEach>
+        		
+        	</select>
+        	
+        </td>
+    </tr>
+	<tr>
+		<th>2차분류</th>
+        <td>
+        
+        	<select name="cateCode" class="form-control">
+        		<option value="">2차 분류</option>
+        		<c:forEach var="n" items="${category}">
+        			<c:if test="${n.cateCodeRef != null}">	
+        				<option value="${n.cateCode}">${n.cateName}</option> 
+        			</c:if> 
+        		</c:forEach> 			
+        	
+        	</select>
+        </td>
+    </tr>
+    
+	<tr>
+		<th>상품명</th>                                     
+		<td><input type="text" class="form-control" name="gdsName" value=""></td>
+    </tr>
+    <tr>
+		<th>상품수량</th>                                     
+		<td><input type="text" class="form-control" name="gdsStock" value=""></td>
+    </tr>
+    <tr>
+		<th>상품가격</th>                                     
+		<td><input type="text" class="form-control" name="gdsPrice" value=""></td>
+	</tr>
+	<tr>
+		<th>내용</th>                                    
+		<td><textarea rows="10" class="form-control" id="editor" name="gdsDes"></textarea></td>
+	</tr>
+
+	<tr>
+		<th>상품이미지</th>                                    
+		<td><input type="file" name="gdsImg"></td>
+	</tr>
+	
+	</table>
+	<input type="submit" value="등록">
+</form>
   </div>
   <!-- /.Main -->
+
  
   <!-- footer -->
   <%@ include file="include/footer.jsp" %> 	
@@ -73,6 +123,7 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
 
 <!-- jQuery -->
 <script src="../resources/admin/plugins/jquery/jquery.min.js"></script>

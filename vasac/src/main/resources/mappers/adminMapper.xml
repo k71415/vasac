@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vasac.mappers.admin">
+	<!--  카테고리 목록 -->
+	<select id="selectCategory" resultType="com.vasac.domain.CategoryVO">
+		select * from category		
+	</select>
+	
+	<!--  상품 등록 -->
+	<insert id="insertGoods" parameterType="com.vasac.domain.GoodsVO" >
+		insert into goods
+		 (
+		 gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes, gdsImg
+		 )
+		 values (
+		 goods_seq.nextval, #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes}, #{gdsImg}
+		 )		 
+	</insert>
+
+</mapper>

@@ -16,14 +16,14 @@ private MemberDAO dao;
 	//회원가입
 	@Override
 	public void account(MemberVO vo) {	
-		dao.account(vo);
+		dao.insertMember(vo);
 
 	}
 	//로그인
 	@Override
 	public MemberVO login(MemberVO vo) {
 	
-		return dao.login(vo);
+		return dao.selectId(vo);
 	}
 
 }

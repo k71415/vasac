@@ -5,7 +5,7 @@ import com.vasac.domain.MemberVO;
 public interface MemberDAO {
 
 	
-	public void account(MemberVO vo); 
+	public void insertMember(MemberVO vo); 
 		
-	public MemberVO login(MemberVO vo);
+	public MemberVO selectId(MemberVO vo);
 }

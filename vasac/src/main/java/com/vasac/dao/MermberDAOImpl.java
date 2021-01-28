@@ -16,16 +16,16 @@ public class MermberDAOImpl implements MemberDAO {
 	
 	//회원가입
 	@Override
-	public void account(MemberVO vo) {
+	public void insertMember(MemberVO vo) {
 		
-		sql.insert(namespace + ".account", vo);
+		sql.insert(namespace + ".insertMember", vo);
 		
 	}
 	//로그인
 	@Override
-	public MemberVO login(MemberVO vo) {
+	public MemberVO selectId(MemberVO vo) {
 	
-		return sql.selectOne(namespace + ".login", vo);
+		return sql.selectOne(namespace + ".selectId", vo);
 	}
 	
 	
