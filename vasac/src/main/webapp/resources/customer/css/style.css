@@ -38,7 +38,8 @@
 /* BASE - Base tyles, Variables, Mixins, etc. */
 body {
   background-color: #ffffff;
-  font-family: "Lato", sans-serif;
+  font-family: Roboto, Lato, arial, 나눔고딕, "Nanum Gothic", "맑은 고딕", "Malgun Gothic", AppleGothic, 돋움, Dotum, sans-serif;
+  
   color: #333333;
   font-size: 16px;
   overflow-x: hidden;
@@ -132,6 +133,7 @@ img {
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
+  margin-top: 15px;
 }
 .aa-browse-btn span {
   margin-left: 5px;
@@ -366,7 +368,7 @@ img {
   float: left;
   display: inline;
   width: 100%;
-  padding: 20px 0;
+  padding: 50px 0;
 }
 #aa-header .aa-header-bottom .aa-header-bottom-area {
   float: left;
@@ -374,7 +376,7 @@ img {
   width: 100%;
 }
 #aa-header .aa-header-bottom .aa-header-bottom-area .aa-logo {
-  float: left;
+  text-align: center;
   margin-top: 4px;
 }
 #aa-header .aa-header-bottom .aa-header-bottom-area .aa-logo a {
@@ -640,7 +642,7 @@ img {
 #menu .menu-area .navbar-default .navbar-nav li a {
   color: #fff;
   font-size: 16px;
-  padding: 10px 15px;
+  padding: 15px 50px;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
@@ -1025,7 +1027,7 @@ img {
   text-align: center;
   padding-bottom: 35px;
 }
-#aa-product .aa-product-area .aa-product-inner #electronics {
+#aa-product .aa-product-area .aa-product-inner #sports {
   text-align: center;
   padding-bottom: 35px;
 }
@@ -1134,8 +1136,6 @@ img {
   height: 300px;
 }
 .aa-product-catg li figure .aa-product-img {
-  background-color: #f9f9fb;
-  display: block;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
@@ -2114,7 +2114,6 @@ img {
   width: 80%;
 }
 #aa-product-details .aa-product-details-area .aa-product-details-content .aa-product-view-slider {
-  background-color: #f8f8f8;
   padding: 10px;
   text-align: center;
 }
@@ -2346,8 +2345,8 @@ img {
   color: #555;
 }
 #cart-view .cart-view-area .cart-view-table .table tbody tr td img {
-  width: 80px;
-  height: 100px;
+  width: 250px;
+  height: 250px;
 }
 #cart-view .cart-view-area .cart-view-table .table tbody tr td .aa-cart-quantity {
   padding: 5px;
@@ -2562,7 +2561,7 @@ img {
   margin-top: -10px;
   width: 80%;
 }
-#checkout .checkout-area .checkout-right .aa-payment-method input[type="submit"] {
+#checkout .checkout-area .checkout-right .aa-payment-method button {
   display: block;
   margin-top: 15px;
   padding: 8px 12px;
@@ -4182,5 +4181,7 @@ img {
   #aa-header .aa-header-top .aa-header-top-right .aa-head-top-nav-right li a {   
     padding: 5px 2px;
   }
+  
+ 
 }
 

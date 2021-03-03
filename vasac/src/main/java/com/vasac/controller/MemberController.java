@@ -1,12 +1,14 @@
 package com.vasac.controller;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.vasac.domain.MemberVO;
 import com.vasac.service.MemberService;
@@ -16,12 +18,7 @@ public class MemberController {
 	@Inject
 	private MemberService service;
 	
-	//customer 홈
-	@RequestMapping("/")
-	public String index() {
-		
-		return "customer/index";
-	}
+
 	
 	//회원가입 폼
 	@RequestMapping(value="/account", method=RequestMethod.GET)
@@ -32,9 +29,11 @@ public class MemberController {
 	
 	//회원가입
 	@RequestMapping(value="/account", method=RequestMethod.POST)
-	public String account(MemberVO vo) {
-	
+	public String account(MemberVO vo, RedirectAttributes rttr) {
+		
 		service.account(vo);
+		
+		rttr.addFlashAttribute("msg", "ok");
 		
 		return "redirect:/";
 	}
@@ -46,15 +45,15 @@ public class MemberController {
 		return "/customer/login";
 	}
 	
+	
 	//로그인
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(MemberVO vo, HttpSession session) {
+	public String login(MemberVO vo, HttpSession session, Model model, RedirectAttributes rttr) {
 		
-
+		int result;
 		MemberVO member = service.login(vo);
-
-		
 			
+
 		if(member != null ) {
 			session.setAttribute("member", member);
 			if(member.getVerify() == 0)
@@ -64,7 +63,9 @@ public class MemberController {
 		}
 		
 		else 
-			return "redirect:/";
+			result = 1;
+			rttr.addFlashAttribute("msg", result);
+			return "redirect:/login";
 	
 	}
 	

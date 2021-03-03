@@ -18,6 +18,10 @@ public class CategoryVO {
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
 	}
+	@Override
+	public String toString() {
+		return "CategoryVO [cateName=" + cateName + ", cateCode=" + cateCode + ", cateCodeRef=" + cateCodeRef + "]";
+	}
 	public String getCateCodeRef() {
 		return cateCodeRef;
 	}

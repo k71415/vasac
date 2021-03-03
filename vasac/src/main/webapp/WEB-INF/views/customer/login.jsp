@@ -43,7 +43,16 @@
 
   </head>
   <body>
-  
+  <script>
+  	if("${msg}" == 1){
+  	alert("아이디 또는 비밀번호를 확인해주세요.")
+  	}
+  	
+  	if("${msg}" == 2){
+  	 alert("로그인 후 이용해주세요.")
+  	  }
+  	
+  </script>
    <!-- wpf loader Two -->
     <div id="wpf-loader-two">          
       <div class="wpf-loader-two-inner">
@@ -76,11 +85,14 @@
                  <h4>로그인</h4>
                  <form action="login" class="aa-login-form" method="post">               
                     <label for="">아이디<span>*</span></label>
-                    <input type="text" name="userId">
+                    <input type="text" name="userId" id="userId">
                     <label for="">비밀번호<span>*</span></label>
                     <input type="password" name="userPass">
-                    <button type="submit" class="aa-browse-btn">로그인</button>                    
+                    <button type="submit" class="aa-browse-btn" onclick="button1_click()">로그인</button>                             
                   </form>
+			
+                      
+
                  </div>
                 </div>
             </div>          
@@ -89,7 +101,7 @@
      </div>
    </div>
  </section>
- <!-- / Cart view section -->
+ <!--  Cart view section -->
 
   <!-- footer -->  
   <%@ include file="include/footer.jsp" %>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vasac.mappers.shop">
+	
+	
+	<!-- Best상품 -->
+	<select id="selectBestGoods" resultType="com.vasac.domain.GoodsVO">
+		select * from 
+		(
+		select gdsNum, gdsName, gdsPrice, gdsThumbImg, gdsSale
+		from goods 
+		order by gdsSell desc)
+		<![CDATA[where rownum <= 8
+		]]>
+	</select>
+	<!--  new상품 -->
+	<select id="selectNewGoods" resultType="com.vasac.domain.GoodsVO">
+		select * from 
+		(
+		select gdsNum, gdsName, gdsPrice, gdsThumbImg, gdsSale 
+		from goods 
+		order by gdsDate desc)
+		<![CDATA[where rownum <= 8
+		]]>
+	</select>
+
+	<select id="selectCategory" resultType="com.vasac.domain.CategoryVO">
+		select * from category		
+	</select>
+	
+	<select id="selectGoodsList" resultType="com.vasac.domain.GoodsVO" parameterType="int">
+		select * from goods
+		where cateCode = #{cateCode}		
+	</select>
+	
+	<select id="selectCateList" resultType="com.vasac.domain.CategoryVO" parameterType="int">
+		select * from category
+		where cateCodeRef = #{cateCodeRef}
+	</select>
+	
+	<select id="selectGoods" resultType="com.vasac.domain.GoodsVO">
+		select * from goods where gdsNum = #{gdsNum}
+	</select>
+	
+	<insert id="insertCart" parameterType="com.vasac.domain.CartVO" > 
+		insert into cart (
+		cartNum, userId, gdsNum, cartStock 
+		)
+		values (
+		cart_seq.nextval, #{userId}, #{gdsNum}, #{cartStock}
+		)
+	</insert>
+	
+	<select id="selectCartList" resultType="com.vasac.domain.CartVO" >
+		select
+		g.gdsNum, g.gdsName, g.gdsPrice, g.gdsThumbImg, 
+		c.cartNum, c.userId, c.cartStock
+		from cart c
+    	inner join goods g
+        on c.gdsnum = g.gdsnum
+        where c.userId = #{gdsNum}
+        order by cartNum asc
+    </select>
+    
+    <delete id="deleteCart" parameterType="int" >
+    	delete from cart
+    	where cartNum = #{cartNum}
+    </delete>
+    
+    <delete id="deleteAllCart">
+    	delete from cart
+    	where userId = #{userId}
+    </delete>
+    
+    <insert id="insertOrder">
+    	 insert into orders(orderId, userId, orderRec, addr1, addr2, addr3, orderPhone, amount)
+     		values(#{orderId}, #{userId}, #{orderRec}, #{addr1}, #{addr2}, #{addr3}, #{orderPhone}, #{amount})
+     </insert>
+     
+     <insert id="insertOrderDetails">
+ 	insert into orders_detail(orderDetailsNum, orderId, gdsNum, cartStock)
+     select order_detail_seq.nextval, #{orderId}, gdsNum, cartStock
+     from cart   
+	</insert> 
+	
+	<select id="selectOrder" resultType="com.vasac.domain.OrdersVO">
+	select * from orders
+	where userId = #{userId}
+	order by orderdate desc
+	</select>
+	
+	<select id="selectOrderDetail" resultType="com.vasac.domain.OrderListVO">
+	select 
+     o.orderId, o.userId, o.orderRec, o.Addr1, o.Addr2, o.Addr3, o.orderPhone, o.amount, o.orderDate, o.status,
+     d.orderDetailsNum, d.gdsNum, d.cartStock,
+     g.gdsName, g.gdsThumbImg, g.gdsPrice
+	from orders o
+    inner join orders_detail d
+    on o.orderId = d.orderId
+    inner join goods g
+    on d.gdsNum = g.gdsNum
+    where o.userId = #{userId}
+    and o.orderId = #{orderId}
+    </select>
+    
+    <update id="updateGoodsStock" >
+    update goods
+    	set gdsStock = gdsStock - #{gdsStock}
+    where gdsNum = #{gdsNum}
+    </update>
+    
+    <update id="updateGoodsSell" >
+    update goods
+    	set gdsSell = gdsSell + #{gdsStock}
+    where gdsNum = #{gdsNum}
+    </update>
+    
+    <insert id="insertReply">
+    insert into reply (
+    gdsNum, userId, repNum, repCon)
+    values (
+    #{gdsNum}, #{userId}, reply_seq.nextval, #{repCon})
+    </insert>
+    
+    <select id="selectReply"  resultType="com.vasac.domain.ReplyVO">
+    select * from reply
+    where 
+    gdsNum = #{gdsNum}
+    </select>
+    
+
+	
+	
+	
+</mapper>

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.vasac.domain.CategoryVO;
 import com.vasac.domain.GoodsVO;
+import com.vasac.domain.OrderListVO;
+import com.vasac.domain.OrdersVO;
 
 public interface AdminDAO {
 
@@ -11,4 +13,18 @@ public interface AdminDAO {
 	public List<CategoryVO> selectCategory();
 	//상품 등록
 	public void insertGoods(GoodsVO vo);
+
+	public List<GoodsVO> selectGoodsList();
+	
+	public GoodsVO selectGoods(int gdsNum);
+	
+	public void updateGoods(GoodsVO vo);
+	
+	public void deleteGoods(int gdsNum);
+	
+	public List<OrdersVO> selectOrderList();
+	
+	public List<OrderListVO> selectOrderDetail(OrdersVO vo);
+	
+	public void updateOrderStatus(OrdersVO vo);
 }

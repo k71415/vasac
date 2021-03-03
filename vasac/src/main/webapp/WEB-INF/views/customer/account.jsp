@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <title>Daily Shop | 회원가입</title>
     
+    <!--  제이쿼리 -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Font awesome -->
     <link href="/resources/customer/css/font-awesome.css" rel="stylesheet">
     <!-- Bootstrap -->
@@ -76,17 +78,61 @@
                  <h4>회원정보 입력</h4>
                  <form action="account" class="aa-login-form" method="post">
                     <label for="">이름<span>*</span></label>
-                    <input type="text" name="userName">
+                    <input type="text" name="userName" id="userName">
                     <label for="">아이디<span>*</span></label>
-                    <input type="text" name="userId">
+                    <input type="text" name="userId" id="userId">
                     <label for="">비밀번호<span>*</span></label>
-                    <input type="password" name="userPass">
+                    <input type="password" name="userPass" id="userPass">
                     <label for="">비밀번호확인<span>*</span></label>
-                    <input type="password" name="userPassCheck">
+                    <input type="password" name="userPassCheck" id="userPassCheck">
                     <label for="">연락처<span>*</span></label>
-                    <input type="text" name="userPhone">
-                    <button type="submit" class="aa-browse-btn">가입</button>                    
+                    <input type="text" name="userPhone" id="userPhone">
+                    <button type="submit" class="aa-browse-btn" id="submit">가입</button>                    
                   </form>
+                  
+                  <script>
+                  	$(document).ready(function(){
+                  		$("#submit").click(function(){
+                  			if($("#userName").val()==""){
+                  				alert("이름을 입력 해주세요.");
+                  				$("#userName").focus();
+                  				return false
+                  			}
+                  			if($("#userId").val()==""){
+                  				alert("아이디를 입력 해주세요.");
+                  				$("#userId").focus();
+                  				return false
+                  			}
+                  			if($("#userPass").val()==""){
+                  				alert("비밀번호를 입력해주세요.");
+                  				$("#userPass").focus();
+                  				return false
+                  			}
+                  			if($("#userPassCheck").val()==""){
+                  				alert("비밀번호확인을 입력해주세요.");
+                  				$("#userPassCheck").focus();
+                  				return false
+                  			}
+
+                  			
+                  			if($("#userPass").val() != $("#userPassCheck").val()){
+                  				alert("비밀번호가 일치하지 않습니다..");
+                  				$("#userPass").focus();
+                  				return false
+                  			}
+                  		
+                  			
+                  			if($("#userPhone").val()==""){
+                  				alert("연락처를 입력해주세요.");
+                  				$("#userPhone").focus();
+                  				return false
+                  			}
+                  		})
+                  		
+                  	});</script>
+
+                  
+                  
                  </div>
                 </div>
             </div>          

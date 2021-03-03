@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>VASAC - 관리자 | 상품등록</title>
 
+  <script src= "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -42,25 +43,85 @@
 
 
   <!-- Main -->
+  	<script>
+  	$(function(){
+  	var category = JSON.parse('${category}');
+	console.log(category);
+	
+	var firstCateArr = new Array();
+	var firstCateObj = new Object();
+	
+ 	for(var i=0; i<category.length; i++){
+		if(category[i].cateCodeRef == ""){
+			firstCateObj = new Object();
+			firstCateObj.cateName = category[i].cateName;
+			firstCateObj.cateCode = category[i].cateCode;
+			
+			firstCateArr.push(firstCateObj);
+		}
+	}
+ 	
+ 	for(var i = 0; i < firstCateArr.length; i++) {
+ 	 		
+ 		$('#select1').append("<option value='" + firstCateArr[i].cateCode + "'>"
+ 				+ firstCateArr[i].cateName + "</option>"); 
+ 	}
+ 	
+ 	$("#select1").change(function(){
+ 	 	var secondCateArr = new Array();
+ 		var secondCateObj = new Object();
+ 		
+ 		for(var i=0; i<category.length; i++){
+ 			if(category[i].cateCodeRef != ""){
+ 				secondCateObj = new Object();
+ 				secondCateObj.cateName = category[i].cateName;
+ 				secondCateObj.cateCode = category[i].cateCode;
+ 				secondCateObj.cateCodeRef = category[i].cateCodeRef;
+ 				secondCateArr.push(secondCateObj);
+ 			}
+ 		}
+ 		console.log(secondCateArr);
+ 		
+ 		$("#select2").children().remove();
+ 		
+ 		var selectVal = $(this).val();
+ 		
+ 		
+ 	 	for(var i = 0; i < secondCateArr.length; i++) {
+ 	 		if(selectVal == secondCateArr[i].cateCodeRef){
+ 	 			
+ 	 		
+ 	 		$('#select2').append("<option value='" + secondCateArr[i].cateCode + "'>"
+ 	 				+ secondCateArr[i].cateName + "</option>"); 
+ 	 	}
+ 	 	}
+ 	 	
+ 		
+	
+
+ 	})
+ 	
+
+	
+	
+	
+  	});
+	</script>
+  
   <div class="content-wrapper">
    
 		<h1 style="padding:20px 10px;">상품등록</h1>
-	<form method="post" action="/admin/reg">
+	<form method="post" action="/admin/goodsReg" enctype="multipart/form-data">
    <table class="table table-striped table-bordered">
 	
+
 	
 	<tr>
 		<th>1차분류</th>
         <td>
         	
-        	<select class="form-control">
-        		<option value="">1차 분류</option>
-        			<c:forEach var="n" items="${category}">
-        			<c:if test="${n.cateCodeRef == null}">
-        				<option value="">${n.cateName}</option>        			
-        			</c:if>
-        			</c:forEach>
-        		
+        	<select class="form-control" id="select1" >
+         		<option>선택</option>
         	</select>
         	
         </td>
@@ -69,14 +130,8 @@
 		<th>2차분류</th>
         <td>
         
-        	<select name="cateCode" class="form-control">
-        		<option value="">2차 분류</option>
-        		<c:forEach var="n" items="${category}">
-        			<c:if test="${n.cateCodeRef != null}">	
-        				<option value="${n.cateCode}">${n.cateName}</option> 
-        			</c:if> 
-        		</c:forEach> 			
-        	
+        	<select name="cateCode" class="form-control" id="select2">  	
+        		
         	</select>
         </td>
     </tr>
@@ -100,12 +155,32 @@
 
 	<tr>
 		<th>상품이미지</th>                                    
-		<td><input type="file" name="gdsImg"></td>
+		<td><input type="file" id="gdsImg" name="file"></td>
 	</tr>
 	
+	<tr>
+		<th>미리보기</th>
+		<td class="select_img"><img src="" /></td>
+	</tr>
 	</table>
+	 
+	 <script>
+  	$("#gdsImg").change(function(){
+   if(this.files && this.files[0]) {
+    var reader = new FileReader;
+    reader.onload = function(data) {
+     $(".select_img img").attr("src", data.target.result).width(500);        
+    }
+    reader.readAsDataURL(this.files[0]);
+   }
+  });
+ </script>
+	
+	
+
 	<input type="submit" value="등록">
 </form>
+	<%=request.getRealPath("/") %>
   </div>
   <!-- /.Main -->
 

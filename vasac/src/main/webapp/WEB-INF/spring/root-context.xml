@@ -33,6 +33,7 @@
 	<context:component-scan base-package="com.vasac.service" />
 	<context:component-scan base-package="com.vasac.dao" />
 	<context:component-scan base-package="com.vasac.domain" />
+	<context:component-scan base-package="com.vasac.utils" />
 
 
 	
