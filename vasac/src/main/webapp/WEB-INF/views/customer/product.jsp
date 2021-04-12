@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -65,66 +66,7 @@
   <%@ include file="include/menu.jsp" %> 	
   <!-- / menu -->
   <!-- Start slider -->
-  <section id="aa-slider">
-    <div class="aa-slider-area">
-      <div id="sequence" class="seq">
-        <div class="seq-screen">
-          <ul class="seq-canvas">
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/2.jpg" alt="Men slide img" />
-              </div>
-              <div class="seq-title">
-               
-              </div>
-            </li>
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/2.jpg" alt="Wristwatch slide img" />
-              </div>
-              <div class="seq-title">
-                
-              </div>
-            </li>
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/3.jpg" alt="Women Jeans slide img" />
-              </div>
-              <div class="seq-title">
-                
-              </div>
-            </li>
-            <!-- single slide item -->           
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/4.jpg" alt="Shoes slide img" />
-              </div>
-              <div class="seq-title">
-                
-              </div>
-            </li>
-            <!-- single slide item -->  
-             <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/5.jpg" alt="Male Female slide img" />
-              </div>
-              <div class="seq-title">
-               
-              </div>
-            </li>                   
-          </ul>
-        </div>
-        <!-- slider navigation btn -->
-        <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
-          <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
-          <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
-        </fieldset>
-      </div>
-    </div>
-  </section>
+  <%@ include file="include/slider.jsp" %>
   <!-- / slider -->
   <!-- Start Promo section -->
   
@@ -163,8 +105,13 @@
                     
                     <figcaption>
                       <h4 class="aa-product-title"><a href="#">${goods.gdsName}</a></h4>
-                      <span class="aa-product-price">${goods.gdsPrice}원</span>
+                      <c:choose>
+                      <c:when test="${goods.gdsStock == 0}"><span class="aa-product-price">품절</span>
+                      </c:when>
+                      <c:when test="${goods.gdsStock != 0}"><span class="aa-product-price"><fmt:formatNumber value="${goods.gdsPrice}" pattern="###,###,###"/>원</span>
+                      </c:when>
                       
+                      </c:choose>
                     </figcaption>
                   </figure>                         
                 

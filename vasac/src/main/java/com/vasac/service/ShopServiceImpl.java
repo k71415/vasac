@@ -132,5 +132,19 @@ public class ShopServiceImpl implements ShopService {
 		
 		return dao.selectReply(gdsNum);
 	}
+
+	@Override
+	public void modifyReply(ReplyVO vo) {
+		
+		dao.updateReply(vo);
+		
+	}
+
+	@Override
+	public void deleteReply(int repNum) {
+		
+		dao.deleteReply(repNum);
+		
+	}
 	
 }

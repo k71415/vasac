@@ -9,7 +9,7 @@
 	<select id="selectBestGoods" resultType="com.vasac.domain.GoodsVO">
 		select * from 
 		(
-		select gdsNum, gdsName, gdsPrice, gdsThumbImg, gdsSale
+		select gdsNum, gdsName, gdsPrice, gdsThumbImg, gdsSale, gdsStock
 		from goods 
 		order by gdsSell desc)
 		<![CDATA[where rownum <= 8
@@ -19,7 +19,7 @@
 	<select id="selectNewGoods" resultType="com.vasac.domain.GoodsVO">
 		select * from 
 		(
-		select gdsNum, gdsName, gdsPrice, gdsThumbImg, gdsSale 
+		select gdsNum, gdsName, gdsPrice, gdsThumbImg, gdsSale, gdsStock 
 		from goods 
 		order by gdsDate desc)
 		<![CDATA[where rownum <= 8
@@ -129,6 +129,20 @@
     where 
     gdsNum = #{gdsNum}
     </select>
+    
+    <update id="updateReply">
+    update reply
+    set
+    repCon = #{repCon}
+    where repNum = #{repNum}
+    </update>
+    
+    <delete id="deleteReply">
+    delete from reply
+    where repNum = #{repNum}
+    </delete>
+    
+
     
 
 	

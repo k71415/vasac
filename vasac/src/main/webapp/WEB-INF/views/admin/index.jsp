@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,10 +44,180 @@
   
 
   <!-- Main -->
-  <div class="content-wrapper">
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Main</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header --> 
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6">
+            <div style="height: 361px;" class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">배송현황</h3>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">${status[0]}건</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      	<span>배송준비</span> 
+                    </span>
+                  </p>
+                </div>
+                 <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">${status[1]}건</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      	<span>배송중</span> 
+                    </span>
+                  </p>
+                </div>
+                 <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">${status[2]}건</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      	<span>배송완료</span> 
+                    </span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
 
-   
+                <div class="position-relative mb-4">
+                  <canvas id="visitors-chart" height="200"></canvas>
+                </div>
+              </div>
+            </div>
+            <!-- /.card -->
+
+            <div style="height: 361px;" class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title">판매순위</h3>
+               
+              </div>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                  <tr>
+                  	<th>이미지</th>
+                    <th>상품명</th>
+                    <th>가격</th>
+                    <th>판매횟수</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <c:forEach var="g" items="${goods}">
+                  <tr>
+                    <td>
+                      <img src="/resources/${g.gdsThumbImg}"  class="img-circle img-size-32 mr-2"></td>
+                    <td>${g.gdsName}</td>  
+                    <td><fmt:formatNumber  value="${g.gdsPrice}" pattern="###,###,###" />원 </td>
+                    <td>               
+                      <fmt:formatNumber  value="${g.gdsSell}" pattern="###,###,###" />회  </td>               
+                  </tr>
+                  </c:forEach>
+                  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col-md-6 -->
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">총 매출</h3>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg"><fmt:formatNumber value="${amount}" pattern="###,###,###" />원</span>
+                  </p>                 
+                </div>
+                <!-- /.d-flex -->
+
+                <div class="position-relative mb-4">
+                  <canvas id="sales-chart" height="200"></canvas>
+                </div>
+
+                
+              </div>
+            </div>
+            <!-- /.card -->
+
+            <div style="height: 361px;" class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title">Infomation</h3>
+              </div>
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                  <p class="text-success text-xl">
+                    <i class="ion ion-ios-refresh-empty"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                       ${info[0]}건
+                    </span>
+                    <span class="text-muted">리뷰건수</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                  <p class="text-warning text-xl">
+                    <i class="ion ion-ios-cart-outline"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                     ${info[1]}건
+                    </span>
+                    <span class="text-muted">판매건수</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+                <div class="d-flex justify-content-between align-items-center mb-0">
+                  <p class="text-danger text-xl">
+                    <i class="ion ion-ios-people-outline"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                       ${info[2]}명
+                    </span>
+                    <span class="text-muted">회원수</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+              </div>
+            </div>
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
   </div>
+  <!-- /.content-wrapper -->
   <!-- /.Main -->
  
   <!-- footer -->

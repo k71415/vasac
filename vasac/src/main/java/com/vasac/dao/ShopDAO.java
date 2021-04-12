@@ -47,4 +47,8 @@ public interface ShopDAO {
 	public void insertReply(ReplyVO vo);
 	
 	public List<ReplyVO> selectReply(int gdsNum);
+	
+	public void updateReply(ReplyVO vo);
+	
+	public void deleteReply(int repNum);
 }

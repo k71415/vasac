@@ -80,6 +80,59 @@
     where
     orderId = #{orderId}
     </update>
+    
+    <select id="selectReplyList" resultType="com.vasac.domain.ReplyVO">
+    select reply.*,gdsThumbImg  from reply
+	inner join goods 
+	on 
+	reply.gdsnum = goods.gdsNum
+	order by repDate desc
+	</select>
+	
+	<delete id="deleteReply">
+	delete from reply
+	where repNum = #{repNum}
+	</delete>
+	
+	<select id="selectAmount" resultType="int">
+	select sum(amount) from orders
+	</select>
+	
+	<select id="selectReady" resultType="int">
+	select count(status) from orders
+	where status = '배송준비'
+	</select>
+	
+	<select id="selectDelivery" resultType="int">
+	select count(status) from orders
+	where status = '배송중'
+	</select>
+	
+	<select id="selectComplete" resultType="int">
+	select count(status) from orders
+	where status = '배송완료'
+	</select>
+	
+	<select id="selectTop3" resultType="com.vasac.domain.GoodsVO">
+    select * from 
+	(select * from goods
+	order by gdssell desc)	
+	<![CDATA[where rownum <= 3
+	]]>
+	</select>
+	
+	<select id="selectSellCount" resultType="int">
+	select sum(gdsSell) from goods
+	</select>
+	
+	<select id="selectMemCount" resultType="int">
+	select count(*) from member
+	where verify = 0
+	</select>
+	
+	<select id="selectRepCount" resultType="int">
+	select count(*) from reply
+	</select>
 	
 
 </mapper>

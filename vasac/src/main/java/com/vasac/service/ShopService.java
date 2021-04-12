@@ -45,4 +45,8 @@ public interface ShopService {
 	public void writeReply(ReplyVO vo);
 	
 	public List<ReplyVO> readReply(int gdsNum);
+	
+	public void modifyReply(ReplyVO vo);
+	
+	public void deleteReply(int repNum);
 }

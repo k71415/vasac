@@ -6,6 +6,7 @@ import com.vasac.domain.CategoryVO;
 import com.vasac.domain.GoodsVO;
 import com.vasac.domain.OrderListVO;
 import com.vasac.domain.OrdersVO;
+import com.vasac.domain.ReplyVO;
 
 public interface AdminService {
 	
@@ -27,4 +28,16 @@ public interface AdminService {
 	public List<OrderListVO> getOrderDetail(OrdersVO vo);
 	
 	public void modifyStatus(OrdersVO vo);
+	
+	public List<ReplyVO> getReplyList();
+	
+	public void deleteReply(int repNum);
+	
+	public int getAmount();
+	
+	public int[] getStatus();
+	
+	public List<GoodsVO> getGoodsTop3();
+	
+	public int[] getInfo();
 }

@@ -12,13 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vasac.domain.CategoryVO;
 import com.vasac.domain.GoodsVO;
 import com.vasac.domain.OrderListVO;
 import com.vasac.domain.OrdersVO;
+import com.vasac.domain.ReplyVO;
 import com.vasac.service.AdminService;
 import com.vasac.utils.UploadFileUtils;
 
@@ -34,8 +34,15 @@ public class AdminController {
 	
 	//admin 홈
 	@RequestMapping("/admin/index")
-	public String adminIndex() {
-		
+	public String adminIndex(Model model) {
+		int amount = service.getAmount();
+		int[] status = service.getStatus();
+		int[] info = service.getInfo();
+		List<GoodsVO> goods = service.getGoodsTop3();
+		model.addAttribute("goods", goods);
+		model.addAttribute("amount", amount);
+		model.addAttribute("status", status);
+		model.addAttribute("info", info);
 		return "admin/index";
 	}
 	
@@ -155,6 +162,22 @@ public class AdminController {
 		 
 		 return "redirect:/admin/orderList";
 	 }
+	 
+	 @RequestMapping("/admin/replyList")
+	 public void replyList(Model model) {
+		 List<ReplyVO> reply = service.getReplyList();
+		 
+		 model.addAttribute("reply", reply);
+	 }
+	 
+	 @RequestMapping("/admin/replyDelete")
+	 public String deleteReply(int repNum) {
+		 service.deleteReply(repNum);
+		 
+		 return "redirect:/admin/replyList";
+	 }
+	 
+
 	 
 
 	 

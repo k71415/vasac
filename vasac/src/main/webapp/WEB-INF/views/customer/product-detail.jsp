@@ -32,11 +32,19 @@
     <link href="/resources/customer/css/sequence-theme.modern-slide-in.css" rel="stylesheet" media="all">
 
     <!-- Main style sheet -->
-    <link href="/resources/customer/css/style.css?after" rel="stylesheet">    
+    <link href="/resources/customer/css/style.css?afterrr" rel="stylesheet">    
 
     <!-- Google Font -->
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <style>
+ div.replyModal { position:relative; z-index:99; display:none; }
+ div.modalBackground { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.8); z-index:-1; }
+ div.modalContent { position:fixed; top:20%; left:calc(50% - 250px); width:500px; height:250px; padding:20px 10px; background:#fff; border:2px solid #666; }
+ div.modalContent textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:475px; height:155px; }
+ div.modalContent button { font-size:20px; padding:5px 10px; margin:10px 0; background:#fff; border:1px solid #ccc; }
+ div.modalContent button.modal_cancel { margin-left:20px; }
+</style>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -66,13 +74,13 @@
                     		  + "<button type='button' class='modify' data-repNum='" + this.repNum + "'>수정</button>"
                     		  + "<button type='button' class='delete' data-repNum='" + this.repNum + "'>삭제</button>"
                     		  + "</h4>"
-                    		  + "<p>" + this.repCon + "</p>"                   		  
+                    		  + "<p class='replyContent'>" + this.repCon + "</p>"                   		  
                     		  + "</div>"
                     		  + "</div>"
                     		  + "</li>";
                     		 }
                     		 else{
-                       		  str += "<li data-gdsNum='" + this.gdsNum + "'>"
+                       		  str += "<li data-repNum='" + this.repNum + "'>"
                     		  + "<div class='media'>"
                     		  + "<div class='media-body'>"
                     		  + "<h4 class='media-heading'>"
@@ -94,6 +102,7 @@
                       }
    
    </script>
+
     
   
 
@@ -119,67 +128,7 @@
   <!-- menu -->
   <%@ include file="include/menu.jsp" %> 	
   <!-- / menu -->
-  <!-- Start slider -->
-  <section id="aa-slider">
-    <div class="aa-slider-area">
-      <div id="sequence" class="seq">
-        <div class="seq-screen">
-          <ul class="seq-canvas">
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/2.jpg" alt="Men slide img" />
-              </div>
-              <div class="seq-title">
-              </div>
-            </li>
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/2.jpg" alt="Wristwatch slide img" />
-              </div>
-              <div class="seq-title">
-                
-              </div>
-            </li>
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/3.jpg" alt="Women Jeans slide img" />
-              </div>
-              <div class="seq-title">
-                
-              </div>
-            </li>
-            <!-- single slide item -->           
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/4.jpg" alt="Shoes slide img" />
-              </div>
-              <div class="seq-title">
-                
-              </div>
-            </li>
-            <!-- single slide item -->  
-             <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/5.jpg" alt="Male Female slide img" />
-              </div>
-              <div class="seq-title">
-               
-              </div>
-            </li>                   
-          </ul>
-        </div>
-        <!-- slider navigation btn -->
-        <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
-          <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
-          <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
-        </fieldset>
-      </div>
-    </div>
-  </section>
-  <!-- / slider -->
+
   <!-- Start Promo section -->
   
   <!-- / Promo section -->
@@ -218,7 +167,7 @@
                     <div class="aa-prod-quantity">
                       <form action="/product/addCart" method="post">
                         <c:if test="${goods.gdsStock != 0 }">
-                        <select id="" name="cartStock">                        
+                        <select id="" name="cartStock" style="margin-right:15px">                        
                          <c:forEach var="i" begin="1" end="10" step="1">
                           <c:if test="${goods.gdsStock >= i }">
                           <option value="${i}">${i} </option>
@@ -233,7 +182,7 @@
                         	</c:if>
                         	
                         	<c:if test="${goods.gdsStock == 0 }">
-                        	주문가능수량: <a href="#">품절</a>
+                        	주문가능수량: <a href="#" >품절</a>
                         	</c:if>
                       </p>
                       <br>
@@ -252,7 +201,7 @@
                 <li><a href="#description" data-toggle="tab">설명</a></li>
                 <li><a href="#review" data-toggle="tab">리뷰</a></li>                
               </ul>
-			<input type="text" value="${member.userId}" >
+			<input type="hidden" value="${member.userId}" >
               <!-- Tab panes -->
               <div class="tab-content">
                 <div class="tab-pane fade in active" id="description">                  
@@ -278,13 +227,61 @@
                       replyList();
                       </script>
                       <script>
-                      $(document).on("click", ".modify", function(){
- 					$(".replyModal").attr("style", "display:block;");
-					});
-						</script>
- 
+                      $(document).on('click', '.modify', function(){
+                    	  $(".replyModal").attr("style", "display:block;");
+                    	  var repNum = $(this).attr("data-repNum");
+                    	  var repCon = $(this).parent().parent().children(".replyContent").text();
+                    	  
+                    	  $(".modal_repNum").val(repNum);
+                    	  $(".modal_repCon").val(repCon);
+                    	  
+                      });
+                      </script>
+                      
+                      <script>
+                      $(document).on('click', '.delete', function(){
+                    	  var check = confirm("삭제 하시겠습니까?");
+                    	  if(check){
+                    		  var data = { 
+                    		  repNum : $(this).attr("data-repNum")
+                    	  };
+                    	  }
+                    	 $.ajax({
+                    		 url : "/product-detail/deleteReply",
+                    	 	 type : "post",
+                    	 	 data : data,
+                    	 	 success : function(){
+                    	 		 replyList();
+                    	 		 alert("삭제 완료!");
+                    	 	 }
+                    	 });
+                      });
+                      </script>
+                      
+                      <script>
+                      $(document).on('click', '.modal_modify_btn', function(){
+                    	  var check = confirm("수정 하시겠습니까?");
+                    	  if(check){
+                    	  var data = {
+                    			  repNum : $(".modal_repNum").val(),
+                    			  repCon : $(".modal_repCon").val()
+                    	  };
+	  
+                    	  $.ajax({
+                    		  url : "/product-detail/modifyreply",
+                    		  type : "post",
+                    		  data : data,
+                    		  success : function(){
+                    			  replyList();
+                    			  $(".replyModal").attr("style", "display:none;");
+                    			  alert("수정 완료!");
+                    		  }
+                    	  });
+                    	  }
+                      });
+                      </script> 
 
-                   
+      
                  <c:if test="${member == null }">
 
                         <p style="text-align:center; margin:50px 0px; font-size:20px">후기를 남기시려면 <a href="/login" style="color:#999">로그인</a> 해주세요</p>
@@ -385,7 +382,30 @@
   <script type="text/javascript" src="/resources/customer/js/nouislider.js"></script>
   <!-- Custom js -->
   <script src="/resources/customer/js/custom.js"></script> 
+	<div class="replyModal" >
 
+ <div class="modalContent">
+  
+  <div>
+   <textarea class="modal_repCon" name="modal_repCon"></textarea>
+   <input type="hidden" class="modal_repNum">
+  </div>
+  
+  <div>
+   <button type="button" class="modal_modify_btn">수정</button>
+   <button type="button" class="modal_cancel">취소</button>
+  </div>
+  
+ </div>
+
+ <div class="modalBackground"></div>
+ 
+</div>
+                      <script>
+                      $(".modal_cancel").click(function(){
+                    	  $(".replyModal").attr("style", "display:none;");
+                      })
+                      </script>
 
 
   </body>

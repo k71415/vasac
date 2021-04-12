@@ -176,4 +176,18 @@ public class ShopController {
 		List<ReplyVO> reply = service.readReply(gdsNum);	
 		return reply;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/product-detail/modifyreply", method = RequestMethod.POST)
+	public void modifyReply(ReplyVO vo) {
+		System.out.println(vo.getRepCon());
+		System.out.println(vo.getRepNum());
+		service.modifyReply(vo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/product-detail/deleteReply", method = RequestMethod.POST)
+	public void deleteReply(int repNum) {
+		service.deleteReply(repNum);
+	}
 }

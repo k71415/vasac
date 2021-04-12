@@ -11,6 +11,7 @@ import com.vasac.domain.CategoryVO;
 import com.vasac.domain.GoodsVO;
 import com.vasac.domain.OrderListVO;
 import com.vasac.domain.OrdersVO;
+import com.vasac.domain.ReplyVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -70,7 +71,68 @@ public class AdminDAOImpl implements AdminDAO {
 		sql.update(namespace + ".updateOrderStatus", vo);
 		
 	}
-	
-	
 
+	@Override
+	public List<ReplyVO> selectReplyList() {
+		
+		return sql.selectList(namespace + ".selectReplyList");
+	}
+
+	@Override
+	public void deleteReply(int repNum) {
+		
+		sql.delete(namespace + ".deleteReply", repNum);
+		
+	}
+
+	@Override
+	public int selectAmount() {
+		
+		return sql.selectOne(namespace + ".selectAmount");
+	}
+
+	@Override
+	public int selectReady() {
+		
+		return sql.selectOne(namespace + ".selectReady");
+	}
+
+	@Override
+	public int selectDelivery() {
+		
+		return sql.selectOne(namespace + ".selectDelivery");
+	}
+
+	@Override
+	public int selectComplete() {
+		
+		return sql.selectOne(namespace + ".selectComplete");
+	}
+
+	@Override
+	public List<GoodsVO> selectTop3() {
+		
+		return sql.selectList(namespace + ".selectTop3");
+
+	}
+
+	@Override
+	public int selectSellCount() {
+		
+		return sql.selectOne(namespace + ".selectSellCount");
+	}
+
+	@Override
+	public int selectMemCount() {
+		
+		return sql.selectOne(namespace + ".selectMemCount");
+	}
+
+	@Override
+	public int selectRepCount() {
+		
+		return sql.selectOne(namespace + ".selectRepCount");
+	}
+	
+	
 }

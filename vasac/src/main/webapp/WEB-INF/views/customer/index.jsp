@@ -72,66 +72,7 @@
   <%@ include file="include/menu.jsp" %> 	
   <!-- / menu -->
   <!-- Start slider -->
-  <section id="aa-slider">
-    <div class="aa-slider-area">
-      <div id="sequence" class="seq">
-        <div class="seq-screen">
-          <ul class="seq-canvas">
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/2.jpg" alt="Men slide img" />
-              </div>
-              <div class="seq-title">
-               
-              </div>
-            </li>
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/2.jpg" alt="Wristwatch slide img" />
-              </div>
-              <div class="seq-title">
-                
-              </div>
-            </li>
-            <!-- single slide item -->
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/3.jpg" alt="Women Jeans slide img" />
-              </div>
-              <div class="seq-title">
-                
-              </div>
-            </li>
-            <!-- single slide item -->           
-            <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/4.jpg" alt="Shoes slide img" />
-              </div>
-              <div class="seq-title">
-                
-              </div>
-            </li>
-            <!-- single slide item -->  
-             <li>
-              <div class="seq-model">
-                <img data-seq src="/resources/customer/img/slider/5.jpg" alt="Male Female slide img" />
-              </div>
-              <div class="seq-title">
-               
-              </div>
-            </li>                   
-          </ul>
-        </div>
-        <!-- slider navigation btn -->
-        <fieldset class="seq-nav" aria-controls="sequence" aria-label="Slider buttons">
-          <a type="button" class="seq-prev" aria-label="Previous"><span class="fa fa-angle-left"></span></a>
-          <a type="button" class="seq-next" aria-label="Next"><span class="fa fa-angle-right"></span></a>
-        </fieldset>
-      </div>
-    </div>
-  </section>
+  <%@ include file="include/slider.jsp" %>
   <!-- / slider -->
   <!-- Start Promo section -->
 
@@ -161,7 +102,14 @@
                             
                               <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[0].gdsName}</a></h4>
+                              <c:choose>
+                              <c:when test="${list[0].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[0].gdsStock != 0}">
                               <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                        
                        
@@ -175,7 +123,14 @@
                             
                              <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[1].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[1].gdsPrice}" pattern="###,###,###"/>원</span>
+                              <c:choose>
+                              <c:when test="${list[1].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[1].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                         
                        
@@ -189,7 +144,14 @@
                         
                              <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[2].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[2].gdsPrice}" pattern="###,###,###"/>원</span>
+                              <c:choose>
+                              <c:when test="${list[2].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[2].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                         
                          
@@ -201,7 +163,14 @@
                            
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[3].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[3].gdsPrice}" pattern="###,###,###"/>원</span>
+                              <c:choose>
+                              <c:when test="${list[3].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[3].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                          
                    
@@ -215,7 +184,14 @@
                             
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[4].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[4].gdsPrice}" pattern="###,###,###"/>원</span>
+                              <c:choose>
+                              <c:when test="${list[4].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[4].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                          
                         
@@ -227,7 +203,14 @@
                             
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[5].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[5].gdsPrice}" pattern="###,###,###"/>원</span>
+                              <c:choose>
+                              <c:when test="${list[5].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[5].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                          
                           
@@ -239,7 +222,14 @@
                           
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[6].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[6].gdsPrice}" pattern="###,###,###"/>원</span>
+                              <c:choose>
+                              <c:when test="${list[6].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[6].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                          
                       
@@ -253,7 +243,14 @@
                             
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[7].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[7].gdsPrice}" pattern="###,###,###"/>원</span>
+                                                            <c:choose>
+                              <c:when test="${list[7].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[7].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                         
                     
@@ -274,7 +271,14 @@
                            
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[8].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[8].gdsPrice}" pattern="###,###,###"/>원</span>
+                                                            <c:choose>
+                              <c:when test="${list[8].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[8].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                         
                         
@@ -288,7 +292,14 @@
                             
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[9].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[9].gdsPrice}" pattern="###,###,###"/>원</span>
+                                                            <c:choose>
+                              <c:when test="${list[9].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[9].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                         
                          
@@ -302,7 +313,14 @@
                            
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[10].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[10].gdsPrice}" pattern="###,###,###"/>원</span>
+                                                           <c:choose>
+                              <c:when test="${list[10].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[10].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                         
                          
@@ -314,7 +332,14 @@
                            
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[11].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[11].gdsPrice}" pattern="###,###,###"/>원</span>
+                                                            <c:choose>
+                              <c:when test="${list[11].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[11].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                          
                       
@@ -328,7 +353,14 @@
                            
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[12].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[12].gdsPrice}" pattern="###,###,###"/>원</span>
+                                                            <c:choose>
+                              <c:when test="${list[12].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[12].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>
                          
@@ -341,7 +373,14 @@
                            
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[13].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[13].gdsPrice}" pattern="###,###,###"/>원</span>
+                                                           <c:choose>
+                              <c:when test="${list[13].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[13].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                          
                         
@@ -367,7 +406,14 @@
                            
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">${list[15].gdsName}</a></h4>
-                              <span class="aa-product-price"><fmt:formatNumber value="${list[15].gdsPrice}" pattern="###,###,###"/>원</span>
+                                                            <c:choose>
+                              <c:when test="${list[15].gdsStock == 0}">
+                              <span class="aa-product-price">품절</span>
+                              </c:when>
+                              <c:when test="${list[15].gdsStock != 0}">
+                              <span class="aa-product-price"><fmt:formatNumber value="${list[0].gdsPrice}" pattern="###,###,###"/>원</span>
+                              </c:when>
+                              </c:choose>
                             </figcaption>
                           </figure>                         
                          
