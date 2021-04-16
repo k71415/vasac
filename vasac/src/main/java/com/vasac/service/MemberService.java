@@ -7,4 +7,6 @@ public interface MemberService {
 	public void account(MemberVO vo);
 	
 	public MemberVO login(MemberVO vo);
+	
+	public int idCk(MemberVO vo);
 }

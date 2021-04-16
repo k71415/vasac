@@ -19,4 +19,10 @@
 		and
 		userPass = #{userPass}
 	</select>
+	
+	<!-- ID중복검사 -->
+	<select id="selectIdCk" resultType="int">
+		select count(*) from member
+		where userId = #{userId}
+	</select>
 </mapper>

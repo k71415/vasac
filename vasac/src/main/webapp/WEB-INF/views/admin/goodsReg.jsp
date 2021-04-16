@@ -9,6 +9,7 @@
   <title>VASAC - 관리자 | 상품등록</title>
 
   <script src= "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script src="/resources/ckeditor/ckeditor.js"></script>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -150,7 +151,9 @@
 	</tr>
 	<tr>
 		<th>내용</th>                                    
-		<td><textarea rows="10" class="form-control" id="editor" name="gdsDes"></textarea></td>
+		<td><textarea rows="10" class="form-control" id="editor" name="gdsDes"></textarea>
+
+</td>
 	</tr>
 
 	<tr>

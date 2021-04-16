@@ -81,17 +81,22 @@
                     <input type="text" name="userName" id="userName">
                     <label for="">아이디<span>*</span></label>
                     <input type="text" name="userId" id="userId">
+                    <button type="button" class="aa-browse-btn" id="idCk" style="float:none">중복체크</button>
+                    <br><br>
                     <label for="">비밀번호<span>*</span></label>
                     <input type="password" name="userPass" id="userPass">
                     <label for="">비밀번호확인<span>*</span></label>
                     <input type="password" name="userPassCheck" id="userPassCheck">
                     <label for="">연락처<span>*</span></label>
-                    <input type="text" name="userPhone" id="userPhone">
+                    <input type="text" name="userPhone" id="userPhone" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
                     <button type="submit" class="aa-browse-btn" id="submit">가입</button>                    
                   </form>
                   
                   <script>
                   	$(document).ready(function(){
+                  		var idck = 0;
+
+                  		
                   		$("#submit").click(function(){
                   			if($("#userName").val()==""){
                   				alert("이름을 입력 해주세요.");
@@ -100,6 +105,11 @@
                   			}
                   			if($("#userId").val()==""){
                   				alert("아이디를 입력 해주세요.");
+                  				$("#userId").focus();
+                  				return false
+                  			}
+                  			if(idck == 0){
+                  				alert("아이디 중복체크를 확인 해주세요.");
                   				$("#userId").focus();
                   				return false
                   			}
@@ -128,6 +138,39 @@
                   				return false
                   			}
                   		})
+                  		
+                  		$("#userId").change(function(){
+                  			idck = 0;
+                  		})
+                  		
+
+
+                  		
+                  		$("#idCk").click(function(){
+                  			if($("#userId").val()==""){
+                  				alert("아이디를 입력 해주세요.");
+                  				$("#userId").focus();
+                  				return false
+                  			}
+                  			$.ajax({
+                  			url : "/account/idck",
+                  			type : "POST",
+                  			data : {"userId" : $("#userId").val()},
+                  			dataType : "json",
+                  			success : function(data){
+                  				if(data == 1){
+                  					alert("중복된 아이디 입니다.");
+                  					idck = 0;
+                  				}
+                  				else if(data == 0){
+                  					alert("사용가능한 아이디 입니다.");
+                  					idck = 1;
+                  				}
+                  			}
+                  			
+                  		})  
+                  		})
+                  		
                   		
                   	});</script>
 

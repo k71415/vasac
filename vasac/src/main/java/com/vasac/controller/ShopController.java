@@ -92,7 +92,7 @@ public class ShopController {
 	
 	
 	@RequestMapping(value = "/product/cart", method = RequestMethod.POST)
-	public String order(HttpSession session, OrdersVO order, OrderDetailVO vo, @RequestParam int[] gdsNum, @RequestParam int[] cartStock) {
+	public String order(HttpSession session, OrdersVO order, @RequestParam int[] gdsNum, @RequestParam int[] cartStock) {
 		MemberVO member = (MemberVO)session.getAttribute("member");
 		String userId = member.getUserId();
 			
@@ -105,28 +105,26 @@ public class ShopController {
 		  
 		  String orderId = ymd + "_" + subNum;
 		  
-		  order.setOrderId(orderId); 
-		  order.setUserId(userId);
-		  
-		  service.orderInfo(order);
-		  
-		  vo.setOrderId(orderId); 
-		  service.orderDetailInfo(vo);
-		  
-		  service.removeAllCart(userId);
-		  
-		  GoodsVO goods = new GoodsVO();
-		  
-		  for(int i=0; i<gdsNum.length; i++) {
-	
+		  	OrderDetailVO vo = new OrderDetailVO();	
+		  	
+			  order.setOrderId(orderId); 
+			  order.setUserId(userId);			  
+			  service.orderInfo(order);
+			  vo.setOrderId(orderId);
+			  vo.setUserId(userId);
+			  service.orderDetailInfo(vo);			  
+			  service.removeAllCart(userId);
 
+			 
+			  GoodsVO goods = new GoodsVO();
+			  
+			  for(int i=0; i<gdsNum.length; i++) {		  
 			  goods.setGdsNum(gdsNum[i]); 
-			  goods.setGdsStock(cartStock[i]);
-				  
-			  service.minusStock(goods);
-			  service.plusSell(goods);
-				
-		  }
+			  goods.setGdsStock(cartStock[i]);  
+			  service.minusStock(goods); 
+			  service.plusSell(goods);			  
+			  }
+			 
 		 
 		
 		return "redirect:/order";

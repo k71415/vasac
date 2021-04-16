@@ -82,7 +82,8 @@
      <insert id="insertOrderDetails">
  	insert into orders_detail(orderDetailsNum, orderId, gdsNum, cartStock)
      select order_detail_seq.nextval, #{orderId}, gdsNum, cartStock
-     from cart   
+     from cart where userId = #{userId}
+     
 	</insert> 
 	
 	<select id="selectOrder" resultType="com.vasac.domain.OrdersVO">

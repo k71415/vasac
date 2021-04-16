@@ -27,6 +27,11 @@ public class MermberDAOImpl implements MemberDAO {
 	
 		return sql.selectOne(namespace + ".selectId", vo);
 	}
+	@Override
+	public int selectIdCk(MemberVO vo) {
+		
+		return sql.selectOne(namespace + ".selectIdCk", vo);
+	}
 	
 	
 }

@@ -6,6 +6,15 @@ public class OrderDetailVO {
 	private String orderId;
 	private int gdsNum;
 	private int cartStock;
+	private String userId;
+	
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public int getOrderDetailsNum() {
 		return orderDetailsNum;
 	}

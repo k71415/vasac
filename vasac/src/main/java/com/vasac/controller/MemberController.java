@@ -38,6 +38,15 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	//아이디 중복검사
+	@ResponseBody
+	@RequestMapping(value="/account/idck", method=RequestMethod.POST)
+	public int idck(MemberVO vo) {
+		System.out.println(vo.getUserId());
+		int result = service.idCk(vo);	
+		return result;
+	}
+	
 	//로그인 폼
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginForm() {

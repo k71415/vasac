@@ -25,5 +25,10 @@ private MemberDAO dao;
 	
 		return dao.selectId(vo);
 	}
+	@Override
+	public int idCk(MemberVO vo) {
+		
+		return dao.selectIdCk(vo);
+	}
 
 }

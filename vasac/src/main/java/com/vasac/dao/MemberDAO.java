@@ -12,5 +12,7 @@ public interface MemberDAO {
 		
 	public MemberVO selectId(MemberVO vo);
 	
+	public int selectIdCk(MemberVO vo);
+	
 	
 }
