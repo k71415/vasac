@@ -16,7 +16,7 @@
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
   				  
-                  <li><a href="account.html">즐겨찾기</a></li>
+
                   <c:choose>
                   	<c:when test="${member.userId == null }">
                   <li class="hidden-xs"><a href="/login">로그인</a></li>

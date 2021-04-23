@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>Daily Shop | 상품</title>
+    <title>VASAC | 상품상세</title>
     
     <!-- Font awesome -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
